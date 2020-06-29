@@ -1,0 +1,117 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Análise Proposta de Crédito</li>
+  </ol>
+</nav>
+<div class="container">
+  <section class="my-4">
+    <div class="container">
+      <h2>Cadastro do Cliente</h2>
+    </div>
+  </section>
+  <div class="card">
+    <div class="card-body">
+      <form method="post" #frm="ngForm" (ngSubmit)="novo(frm)">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" class="form-control" placeholder="Informe o Nome"
+            [(ngModel)]="cliente.nome" required />
+        </div>
+        <div class="form-group">
+          <label for="nome">CPF</label>
+          <input type="text" id="cpf" name="cpf" class="form-control" placeholder="Informe o Cpf"
+            [(ngModel)]="cliente.cpf" required />
+        </div>
+        <div class="form-group">
+          <label for="nome">Idade</label>
+          <input type="text" id="idade" name="idade" class="form-control" placeholder="Informe a sua Idade"
+            [(ngModel)]="cliente.idade" required />
+        </div>
+        <label for="nome">Sexo</label>
+        <div class="form-group">
+          <select id="sexo" name="sexo" class="form-control" [(ngModel)]="cliente.sexo">
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+          </select>
+        </div>
+        <label for="nome">Estado Civil</label>
+        <div class="form-group">
+          <select id="estadoCivil" name="estadoCivil" class="form-control" [(ngModel)]="cliente.estadoCivil">
+            <option *ngFor="let civil of estadosCivil" [value]="civil.name">
+              {{civil.name}}
+            </option>
+          </select>
+        </div>
+        <label for="nome">Estado</label>
+        <div class="form-group">
+          <select id="estado" name="estado" class="form-control" [(ngModel)]="cliente.estado">
+            <option *ngFor="let estados of estadosLista" [value]="estados.name">
+              {{estados.label}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nome">Dependentes</label>
+          <input type="text" id="dependentes" name="dependentes" class="form-control"
+            placeholder="Informe o Número de Dependentes" [(ngModel)]="cliente.dependentes" required />
+        </div>
+        <div class="form-group">
+          <label for="nome">Renda</label>
+          <input type="text" id="renda" name="renda" class="form-control" placeholder="Informe a sua renda R$"
+            [(ngModel)]="cliente.renda" required />
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+  <!-- Listar clientes cadastrados -->
+  <section class="my-4">
+    <div class="container">
+      <h2>Clientes Cadastrados</h2>
+    </div>
+  </section>
+  <div class="card">
+    <div class="card-body">
+      <!-- Filtro pelo cpf -->
+      <div class="form-group">
+        <label for="nome">Filtro</label>
+        <input type="text" id="renda" name="renda" class="form-control" placeholder="Informe o Cpf para busca"
+          [(ngModel)]="cpfBusca" (input)="busca()" />
+      </div>
+    </div>
+  </div>
+  <!-- Tabela com os clientes cadastrados -->
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Cpf</th>
+          <th>Idade</th>
+          <th>Sexo</th>
+          <th>Estado Civil</th>
+          <th>Estado</th>
+          <th>Dependentes</th>
+          <th>Renda</th>
+          <th>Resultado</th>
+          <th>Limite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{cliente.nome}}</td>
+          <td>{{cliente.cpf}}</td>
+          <td>{{cliente.idade}}</td>
+          <td>{{cliente.sexo}}</td>
+          <td>{{cliente.estadoCivil}}</td>
+          <td>{{cliente.estado}}</td>
+          <td>{{cliente.dependentes}}</td>
+          <td>R$ {{cliente.renda}}</td>
+          <td>{{cliente.resultado}}</td>
+          <td>{{cliente.limite}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
