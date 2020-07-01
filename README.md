@@ -10,3 +10,7 @@ Aplicação para um cadastro de proposta de crédito para um determinado cliente
 # Configurar projeto na sua máquina
 - Ferramenta: VS Code
 - Abrir o terminal e utilizar o comando "npm install" e depois "ng serve" para subir a aplicação.
+
+# Tecnologias Usadas:
+- Angular
+- Bootstrap
